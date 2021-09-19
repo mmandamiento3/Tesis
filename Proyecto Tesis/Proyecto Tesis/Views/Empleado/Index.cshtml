@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Proyecto_Tesis.Models.TBL_EMPLEADO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TBL_AREA_PUESTO.IN_CODIGO_PUESTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VC_APELLIDO_PATERNO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VC_APELLIDO_MATERNO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VC_NOMBRES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CH_SEXO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DT_FECHA_NACIMIENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VC_NACIONALIDAD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CH_TIPO_DOCUMENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VC_NUMERO_DOCUMENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VC_CORREO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VC_NUMERO_CELULAR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CH_SITUACION_REGISTRO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VC_FOTO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TBL_AREA_PUESTO.IN_CODIGO_PUESTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VC_APELLIDO_PATERNO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VC_APELLIDO_MATERNO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VC_NOMBRES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CH_SEXO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DT_FECHA_NACIMIENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VC_NACIONALIDAD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CH_TIPO_DOCUMENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VC_NUMERO_DOCUMENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VC_CORREO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VC_NUMERO_CELULAR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CH_SITUACION_REGISTRO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VC_FOTO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IN_CODIGO_EMPLEADO }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IN_CODIGO_EMPLEADO }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IN_CODIGO_EMPLEADO })
+        </td>
+    </tr>
+}
+
+</table>

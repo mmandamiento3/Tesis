@@ -1,0 +1,122 @@
+﻿@model Proyecto_Tesis.Models.TBL_EMPLEADO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TBL_EMPLEADO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TBL_AREA_PUESTO.IN_CODIGO_PUESTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TBL_AREA_PUESTO.IN_CODIGO_PUESTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VC_APELLIDO_PATERNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VC_APELLIDO_PATERNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VC_APELLIDO_MATERNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VC_APELLIDO_MATERNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VC_NOMBRES)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VC_NOMBRES)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CH_SEXO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CH_SEXO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DT_FECHA_NACIMIENTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DT_FECHA_NACIMIENTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VC_NACIONALIDAD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VC_NACIONALIDAD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CH_TIPO_DOCUMENTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CH_TIPO_DOCUMENTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VC_NUMERO_DOCUMENTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VC_NUMERO_DOCUMENTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VC_CORREO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VC_CORREO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VC_NUMERO_CELULAR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VC_NUMERO_CELULAR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CH_SITUACION_REGISTRO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CH_SITUACION_REGISTRO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VC_FOTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VC_FOTO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IN_CODIGO_EMPLEADO }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
