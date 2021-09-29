@@ -36,12 +36,64 @@ namespace Proyecto_Tesis.Controllers
             return View(tBL_EMPLEADO);
         }
 
+       
+        List<SelectListItem> lista2 = new List<SelectListItem>(); //cbo areas
+       
+        List<SelectListItem> listasexo = new List<SelectListItem>();
+        List<SelectListItem> TipodeDocumento = new List<SelectListItem>();
         // GET: Empleado/Create
         public ActionResult Create()
-        {
-            ViewBag.IN_CODIGO_PUESTO = new SelectList(db.TBL_AREA_PUESTO, "IN_CODIGO_PUESTO", "IN_CODIGO_PUESTO");
+        {    
+
+          
+            lista2 = (from ap in db.TBL_AREA_PUESTO.GroupBy(p => p.IN_CODIGO_AREA).Select(g => g.FirstOrDefault()) //esto para evitar los datos duplicados
+                      join a in db.TBL_AREA on ap.IN_CODIGO_AREA equals a.IN_CODIGO_AREA
+                      where ap.IN_CODIGO_AREA == a.IN_CODIGO_AREA
+
+                      select new SelectListItem
+                      {
+                          Value = ap.IN_CODIGO_AREA.ToString(),
+                          Text = a.VC_NOMBRE_AREA
+
+                      }).ToList();
+
+            ViewBag.ListaArea2 = lista2;
+
+            ////Lista de sexo : Femenimo y MAsculino
+            listasexo.Add(new SelectListItem() { Text = "Masculino", Value = "1" });
+            listasexo.Add(new SelectListItem() { Text = "Femenino", Value = "2" });
+            ViewBag.Sexo = listasexo;
+
+            //Lista de Tipo de Documento
+            TipodeDocumento.Add(new SelectListItem() { Text = "DNI", Value = "1" });
+            TipodeDocumento.Add(new SelectListItem() { Text = "Pasaporte", Value = "2" });
+            TipodeDocumento.Add(new SelectListItem() { Text = "Carnet Extranjería", Value = "3" });
+            ViewBag.TipoDocumento = TipodeDocumento;
+           
+
+            //--------------------------------//
+
             return View();
         }
+
+        public JsonResult ObtenerPuesto2(int area)
+        {
+         
+            var lista1 = (from ap in db.TBL_AREA_PUESTO join p in db.TBL_PUESTO on ap.IN_CODIGO_PUESTO equals p.IN_CODIGO_PUESTO
+                      where ap.IN_CODIGO_PUESTO == p.IN_CODIGO_PUESTO && ap.IN_CODIGO_AREA == area
+                      select new SelectListItem
+                      {
+                          Value = ap.IN_CODIGO_PUESTO.ToString(),
+                          Text = p.VC_NOMBRE_PUESTO
+
+                      }).ToList();
+            
+
+            return Json(lista1,JsonRequestBehavior.AllowGet);
+        }
+
+
+
 
         // POST: Empleado/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
@@ -50,6 +102,9 @@ namespace Proyecto_Tesis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IN_CODIGO_EMPLEADO,VC_APELLIDO_PATERNO,VC_APELLIDO_MATERNO,VC_NOMBRES,CH_SEXO,DT_FECHA_NACIMIENTO,VC_NACIONALIDAD,CH_TIPO_DOCUMENTO,VC_NUMERO_DOCUMENTO,VC_CORREO,VC_NUMERO_CELULAR,CH_SITUACION_REGISTRO,VC_FOTO,IN_CODIGO_PUESTO,IN_CODIGO_AREA")] TBL_EMPLEADO tBL_EMPLEADO)
         {
+
+          
+
             if (ModelState.IsValid)
             {
                 db.TBL_EMPLEADO.Add(tBL_EMPLEADO);
@@ -57,10 +112,18 @@ namespace Proyecto_Tesis.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IN_CODIGO_PUESTO = new SelectList(db.TBL_AREA_PUESTO, "IN_CODIGO_PUESTO", "IN_CODIGO_PUESTO", tBL_EMPLEADO.IN_CODIGO_PUESTO);
-            return View(tBL_EMPLEADO);
-        }
+     
+ 
+            //ViewBag.IN_CODIGO_PUESTO = new SelectList(db.TBL_PUESTO, "IN_CODIGO_PUESTO", "IN_CODIGO_PUESTO", tBL_EMPLEADO.IN_CODIGO_PUESTO);
+            //ViewBag.IN_CODIGO_AREA = new SelectList(db.TBL_AREA, "IN_CODIGO_AREA", "IN_CODIGO_AREA", tBL_EMPLEADO.IN_CODIGO_AREA);
+            return View(tBL_EMPLEADO);       
+    }
 
+        
+        
+        
+        
+        
         // GET: Empleado/Edit/5
         public ActionResult Edit(int? id)
         {

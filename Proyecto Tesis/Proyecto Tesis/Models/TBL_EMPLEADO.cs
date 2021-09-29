@@ -35,6 +35,8 @@ namespace Proyecto_Tesis.Models
         [StringLength(1)]
         public string CH_SEXO { get; set; }
 
+        [Required(ErrorMessage = "Enter the issued date.")]
+        [DataType(DataType.Date)]
         public DateTime DT_FECHA_NACIMIENTO { get; set; }
 
         [Required]

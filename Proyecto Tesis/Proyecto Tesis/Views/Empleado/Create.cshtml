@@ -1,5 +1,7 @@
 ﻿@model Proyecto_Tesis.Models.TBL_EMPLEADO
 
+
+
 @{
     ViewBag.Title = "Create";
 }
@@ -58,7 +60,8 @@
                         @*@Html.LabelFor(model => model.CH_SEXO, htmlAttributes: new { @class = "control-label col-md-2" })*@
                         <label class="col-sm-4 col-form-label">SEXO</label>
                         <div class="col-sm-5">
-                            @Html.EditorFor(model => model.CH_SEXO, new { htmlAttributes = new { @class = "form-control" } })
+                            @*@Html.EditorFor(model => model.CH_SEXO, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownList("CH_SEXO", (List<SelectListItem>)ViewBag.Sexo, htmlAttributes: new { @class = "form-control", id = "sexo" })
                             @Html.ValidationMessageFor(model => model.CH_SEXO, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -80,7 +83,8 @@
                         @*@Html.LabelFor(model => model.CH_TIPO_DOCUMENTO, htmlAttributes: new { @class = "control-label col-md-2" })*@
                         <label class="col-sm-5 col-form-label">TIPO DE DOCUMENTO</label>
                         <div class="col-sm-5">
-                            @Html.EditorFor(model => model.CH_TIPO_DOCUMENTO, new { htmlAttributes = new { @class = "form-control" } })
+                            @*@Html.EditorFor(model => model.CH_TIPO_DOCUMENTO, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownList("CH_TIPO_DOCUMENTO", (List<SelectListItem>)ViewBag.TipoDocumento, htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.CH_TIPO_DOCUMENTO, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -158,30 +162,65 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.IN_CODIGO_PUESTO, "IN_CODIGO_PUESTO", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("IN_CODIGO_PUESTO", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.IN_CODIGO_PUESTO, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.IN_CODIGO_AREA, "IN_CODIGO_AREA", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("IN_CODIGO_AREA", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.IN_CODIGO_AREA, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
-
+            </div>        
            
         </div>
 
     </div>
 
     <h4>Datos Organizacionales</h4>
+
+    @*<div class="col-sm-4">
+        <div class="form-group row">
+         
+            <label class="col-sm-5 col-form-label">AREA</label>
+            <div class="col-md-10">
+                @Html.DropDownList("IN_CODIGO_AREA",(List<SelectListItem>)ViewBag.ListaArea,htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IN_CODIGO_AREA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group row">
+         
+            <label class="col-sm-5 col-form-label">PUESTO</label>
+            <div class="col-md-10">
+                @Html.DropDownList("IN_CODIGO_PUESTO", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IN_CODIGO_PUESTO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>*@
+
+    <div class="card-body">
+        <div class="row">
+
+            <div class="col-sm-4">
+                <div class="form-group row">
+                    @*@Html.LabelFor(model => model.VC_FOTO, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <label class="col-sm-4 col-form-label">AREA</label>
+                    <div class="col-md-5">
+                        @Html.DropDownList("IN_CODIGO_AREA", (List<SelectListItem>)ViewBag.ListaArea2, htmlAttributes: new { @class = "form-control", id = "CodigoArea" })
+                        @Html.ValidationMessageFor(model => model.IN_CODIGO_AREA, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+         
+            <div class="col-sm-4">
+                <div class="form-group row">
+                    @*@Html.LabelFor(model => model.VC_FOTO, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <label class="col-sm-4 col-form-label">PUESTO</label>
+                    <div class="col-md-6">         
+                        @Html.DropDownList("IN_CODIGO_PUESTO", new List<SelectListItem>(), new { @class = "form-control", id = "ddlpuestos" })    
+                        @Html.ValidationMessageFor(model => model.IN_CODIGO_PUESTO, "", new { @class = "text-danger" }) 
+                    </div>  
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
 
 
 
@@ -199,6 +238,47 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+<!--Este es el script para cambiar el puesto dependiendo del área-->
+
+<script>
+    var cboAreaClass = document.getElementById("CodigoArea");
+    cboAreaClass.addEventListener("change", Refresh);
+    Refresh();
+    function Refresh() {
+        fetch("@Url.Content("~/Empleado/ObtenerPuesto2")" + "?area=" + cboAreaClass.value)
+        .then(function (result) {
+            if (result.ok) {
+                return result.json(cboAreaClass);
+            }
+        })
+        .then(function (data) {
+            cbo = document.getElementById("ddlpuestos");
+            cbo.innerHTML = "";
+            data.forEach(function (element) {
+                let option = document.createElement("option");
+                option.appendChild(document.createTextNode(element.Text));
+                option.value = element.Value;
+                cbo.appendChild(option);
+                
+            })
+        })
+    }
+     //Probar lo que se guarda al presionar el dropdownlist, ene ste caso "ch_sexo"
+        var sexo = document.getElementById("ddlpuestos");
+    sexo.addEventListener('change', function () {
+        var select = this.options[ddlpuestos.selectedIndex];
+        console.log(select.value + ':' + select.Text)
+    });
+
+   
+</script>
+
+
+
+
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+       
+    }
