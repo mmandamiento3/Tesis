@@ -4,59 +4,34 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@*<h2>Index</h2>*@
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+</p>*@
+<table class="table table-bordered table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TBL_AREA_PUESTO.IN_CODIGO_PUESTO)
+            @*@Html.DisplayNameFor(model => model.IN_CODIGO_AREA)*@
+            CODIGO EMPLEADO
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.VC_APELLIDO_PATERNO)
+            Ap. Paterno
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.VC_APELLIDO_MATERNO)
+            Ap. Materno
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.VC_NOMBRES)
+            Area
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CH_SEXO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DT_FECHA_NACIMIENTO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VC_NACIONALIDAD)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CH_TIPO_DOCUMENTO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VC_NUMERO_DOCUMENTO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VC_CORREO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VC_NUMERO_CELULAR)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CH_SITUACION_REGISTRO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VC_FOTO)
-        </th>
-        <th></th>
+        
+        <th>Acción</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TBL_AREA_PUESTO.IN_CODIGO_PUESTO)
+            @Html.DisplayFor(modelItem => item.IN_CODIGO_EMPLEADO)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.VC_APELLIDO_PATERNO)
@@ -65,35 +40,9 @@
             @Html.DisplayFor(modelItem => item.VC_APELLIDO_MATERNO)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.VC_NOMBRES)
+            @Html.DisplayFor(modelItem => item.IN_CODIGO_AREA)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CH_SEXO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DT_FECHA_NACIMIENTO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VC_NACIONALIDAD)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CH_TIPO_DOCUMENTO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VC_NUMERO_DOCUMENTO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VC_CORREO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VC_NUMERO_CELULAR)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CH_SITUACION_REGISTRO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VC_FOTO)
-        </td>
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IN_CODIGO_EMPLEADO }) |
             @Html.ActionLink("Details", "Details", new { id=item.IN_CODIGO_EMPLEADO }) |

@@ -17,8 +17,43 @@ namespace Proyecto_Tesis.Controllers
         // GET: Empleado
         public ActionResult Index()
         {
-            var tBL_EMPLEADO = db.TBL_EMPLEADO.Include(t => t.TBL_AREA_PUESTO);
-            return View(tBL_EMPLEADO.ToList());
+          List<TBL_EMPLEADO> lista3 = new List<TBL_EMPLEADO>();
+
+
+
+            //var area= (from ap in db.TBL_AREA_PUESTO.GroupBy(p => p.IN_CODIGO_AREA).Select(g => g.FirstOrDefault()) //esto para evitar los datos duplicados
+            //       join a in db.TBL_AREA on ap.IN_CODIGO_AREA equals a.IN_CODIGO_AREA
+            //       where ap.IN_CODIGO_AREA == a.IN_CODIGO_AREA
+
+            //       select new 
+            //       {
+
+            //           a.VC_NOMBRE_AREA
+
+            //       }).ToList();
+
+            //var empleadoss = (from e in db.TBL_EMPLEADO join ap in db.TBL_AREA_PUESTO on e.IN_CODIGO_AREA equals ap.IN_CODIGO_AREA join a in db.TBL_AREA
+            //                  on    e.IN_CODIGO_AREA equals a.IN_CODIGO_AREA join p in db.TBL_PUESTO on e.IN_CODIGO_PUESTO equals p.IN_CODIGO_PUESTO
+
+            //                  select new
+            //                  {
+            //                      e.IN_CODIGO_EMPLEADO,
+            //                      e.VC_APELLIDO_PATERNO,
+            //                      e.VC_APELLIDO_MATERNO,
+            //                      e.VC_NOMBRES,
+            //                      a.VC_NOMBRE_AREA,
+            //                      p.VC_NOMBRE_PUESTO
+            //                  }
+            //                  ).ToList();
+
+
+
+            //return View(empleadoss);
+            
+
+            //original: 
+            var empleado = db.TBL_EMPLEADO.Include(t => t.TBL_AREA_PUESTO).ToList();
+            return View(empleado);
         }
 
         // GET: Empleado/Details/5
@@ -36,11 +71,11 @@ namespace Proyecto_Tesis.Controllers
             return View(tBL_EMPLEADO);
         }
 
-       
+
         List<SelectListItem> lista2 = new List<SelectListItem>(); //cbo areas
-       
         List<SelectListItem> listasexo = new List<SelectListItem>();
         List<SelectListItem> TipodeDocumento = new List<SelectListItem>();
+
         // GET: Empleado/Create
         public ActionResult Create()
         {    
