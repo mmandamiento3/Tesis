@@ -57,6 +57,16 @@ namespace Proyecto_Tesis.Models
                 .IsFixedLength()
                 .IsUnicode(false);
 
+            //----------Agregado----
+            //modelBuilder.Entity<TBL_AREA>()
+            //    .HasMany(e => e.TBL_EMPLEADO)
+            //    .WithRequired(e => e.TBL_AREA)
+            //    .HasForeignKey(e => new { e.IN_CODIGO_AREA, e.IN_CODIGO_AREA })
+            //    .WillCascadeOnDelete(false);
+
+
+                //---------
+
             modelBuilder.Entity<TBL_AREA>()
                 .HasMany(e => e.TBL_AREA_PUESTO)
                 .WithRequired(e => e.TBL_AREA)
@@ -176,7 +186,7 @@ namespace Proyecto_Tesis.Models
                 .WithRequired(e => e.TBL_EMPLEADO)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<TBL_INCIDENCIA>()
+           modelBuilder.Entity<TBL_INCIDENCIA>()
                 .Property(e => e.VC_NOMBRE_INCIDENCIA)
                 .IsUnicode(false);
 

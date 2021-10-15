@@ -32,5 +32,6 @@ namespace Proyecto_Tesis.Models
         public virtual ICollection<TBL_EMPLEADO> TBL_EMPLEADO { get; set; }
 
         public virtual TBL_PUESTO TBL_PUESTO { get; set; }
+               
     }
 }

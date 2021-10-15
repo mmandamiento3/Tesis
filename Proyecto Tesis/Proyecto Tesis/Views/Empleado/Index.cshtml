@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Proyecto_Tesis.Models.TBL_EMPLEADO>
+﻿@*@model IEnumerable<Proyecto_Tesis.Models.TBL_EMPLEADO>*@
+@model Proyecto_Tesis.ViewModel.EmpleadoViewModel
+
 
 @{
     ViewBag.Title = "Index";
@@ -6,42 +8,69 @@
 
 @*<h2>Index</h2>*@
 
-@*<p>
+@*@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>*@
+@*</p>*@
+
 <table class="table table-bordered table-striped">
     <tr>
         <th>
-            @*@Html.DisplayNameFor(model => model.IN_CODIGO_AREA)*@
             CODIGO EMPLEADO
         </th>
         <th>
-            Ap. Paterno
+            AP. PATERNO
         </th>
         <th>
-            Ap. Materno
+            AP. MATERNO
         </th>
         <th>
-            Area
+            NOMBRES
         </th>
-        
+        <th>           
+            CODIGO AREA
+        </th>  
+        <th>     
+            NOMBRE AREA
+        </th>     
+        <th>
+            CODIGO PUESTO
+        </th> 
+        <th>
+            NOMBRE PUESTO
+        </th> 
         <th>Acción</th>
     </tr>
+   
+  
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Empleado) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.IN_CODIGO_EMPLEADO)
+            @item.IN_CODIGO_EMPLEADO
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.VC_APELLIDO_PATERNO)
+            @item.VC_APELLIDO_PATERNO
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.VC_APELLIDO_MATERNO)
+            @item.VC_APELLIDO_MATERNO
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IN_CODIGO_AREA)
+            @item.VC_NOMBRES
         </td>
+        <td>
+            @item.IN_CODIGO_AREA
+        </td>
+        <td>
+            @item.TBL_AREA_PUESTO.TBL_AREA.VC_NOMBRE_AREA
+        </td>
+        <td>
+            @item.TBL_AREA_PUESTO.IN_CODIGO_PUESTO
+        </td>
+        <td>
+            @item.TBL_AREA_PUESTO.TBL_PUESTO.VC_NOMBRE_PUESTO
+        </td>
+      
+      
         
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IN_CODIGO_EMPLEADO }) |
@@ -52,3 +81,5 @@
 }
 
 </table>
+
+

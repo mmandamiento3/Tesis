@@ -5,13 +5,25 @@
 }
 
 <h2>Details</h2>
+@*@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IN_CODIGO_AREA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VC_NOMBRE_AREA)
+        </td>
+    </tr>
+}*@
+
 
 <div>
     <h4>TBL_EMPLEADO</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TBL_AREA_PUESTO.IN_CODIGO_PUESTO)
+            @Html.DisplayNameFor(model => model.IN_CODIGO_AREA)
         </dt>
 
         <dd>

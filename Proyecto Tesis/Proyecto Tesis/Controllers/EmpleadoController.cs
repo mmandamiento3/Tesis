@@ -7,54 +7,38 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Proyecto_Tesis.Models;
+using Proyecto_Tesis.ViewModel;
 
 namespace Proyecto_Tesis.Controllers
 {
     public class EmpleadoController : Controller
     {
         private TesisDBContext db = new TesisDBContext();
+        
 
         // GET: Empleado
         public ActionResult Index()
         {
-          List<TBL_EMPLEADO> lista3 = new List<TBL_EMPLEADO>();
-
-
-
-            //var area= (from ap in db.TBL_AREA_PUESTO.GroupBy(p => p.IN_CODIGO_AREA).Select(g => g.FirstOrDefault()) //esto para evitar los datos duplicados
-            //       join a in db.TBL_AREA on ap.IN_CODIGO_AREA equals a.IN_CODIGO_AREA
-            //       where ap.IN_CODIGO_AREA == a.IN_CODIGO_AREA
-
-            //       select new 
-            //       {
-
-            //           a.VC_NOMBRE_AREA
-
-            //       }).ToList();
-
-            //var empleadoss = (from e in db.TBL_EMPLEADO join ap in db.TBL_AREA_PUESTO on e.IN_CODIGO_AREA equals ap.IN_CODIGO_AREA join a in db.TBL_AREA
-            //                  on    e.IN_CODIGO_AREA equals a.IN_CODIGO_AREA join p in db.TBL_PUESTO on e.IN_CODIGO_PUESTO equals p.IN_CODIGO_PUESTO
-
-            //                  select new
-            //                  {
-            //                      e.IN_CODIGO_EMPLEADO,
-            //                      e.VC_APELLIDO_PATERNO,
-            //                      e.VC_APELLIDO_MATERNO,
-            //                      e.VC_NOMBRES,
-            //                      a.VC_NOMBRE_AREA,
-            //                      p.VC_NOMBRE_PUESTO
-            //                  }
-            //                  ).ToList();
-
-
-
-            //return View(empleadoss);
             
+            EmpleadoViewModel obj = new EmpleadoViewModel();
+            //obj.AreaPuesto = db.TBL_AREA_PUESTO.ToList();
+            //obj.Areas = db.TBL_AREA.ToList();
+            //obj.Puestos = db.TBL_PUESTO.ToList();           
+            obj.Empleado = db.TBL_EMPLEADO.Include(m=>m.TBL_AREA_PUESTO).ToList();
+            
+            
+            //List<TBL_EMPLEADO> lista3 = new List<TBL_EMPLEADO>();
+            ////original: 
+            //var empleado = db.TBL_EMPLEADO.Include(t => t.TBL_AREA_PUESTO);
 
-            //original: 
-            var empleado = db.TBL_EMPLEADO.Include(t => t.TBL_AREA_PUESTO).ToList();
-            return View(empleado);
+            ////lista3.AddRange(empleado);
+            //return View(emp.ListarEmpleado());
+            //---------------------------------------------------------------------------------
+            return View(obj);
+            
         }
+
+      
 
         // GET: Empleado/Details/5
         public ActionResult Details(int? id)
@@ -160,20 +144,20 @@ namespace Proyecto_Tesis.Controllers
         
         
         // GET: Empleado/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TBL_EMPLEADO tBL_EMPLEADO = db.TBL_EMPLEADO.Find(id);
-            if (tBL_EMPLEADO == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.IN_CODIGO_PUESTO = new SelectList(db.TBL_AREA_PUESTO, "IN_CODIGO_PUESTO", "IN_CODIGO_PUESTO", tBL_EMPLEADO.IN_CODIGO_PUESTO);
-            return View(tBL_EMPLEADO);
-        }
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    TBL_EMPLEADO tBL_EMPLEADO = db.TBL_EMPLEADO.Find(id);
+        //    if (tBL_EMPLEADO == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    ViewBag.IN_CODIGO_PUESTO = new SelectList(db.TBL_AREA_PUESTO, "IN_CODIGO_PUESTO", "IN_CODIGO_PUESTO", tBL_EMPLEADO.IN_CODIGO_PUESTO);
+        //    return View(tBL_EMPLEADO);
+        //}
 
         // POST: Empleado/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 

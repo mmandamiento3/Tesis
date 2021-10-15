@@ -98,4 +98,3 @@ D:\Proyecto Tesis\Tesis\Proyecto Tesis\Proyecto Tesis\bin\es\Microsoft.Owin.Secu
 D:\Proyecto Tesis\Tesis\Proyecto Tesis\Proyecto Tesis\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 D:\Proyecto Tesis\Tesis\Proyecto Tesis\Proyecto Tesis\obj\Debug\Proyecto Tesis.dll
 D:\Proyecto Tesis\Tesis\Proyecto Tesis\Proyecto Tesis\obj\Debug\Proyecto Tesis.pdb
-D:\Proyecto Tesis\Tesis\Proyecto Tesis\Proyecto Tesis\obj\Debug\Proyecto Tesis.csprojResolveAssemblyReference.cache

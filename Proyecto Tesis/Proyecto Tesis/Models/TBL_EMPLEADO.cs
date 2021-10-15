@@ -5,6 +5,7 @@ namespace Proyecto_Tesis.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Linq;
 
     public partial class TBL_EMPLEADO
     {
@@ -14,6 +15,7 @@ namespace Proyecto_Tesis.Models
             TBL_REGISTRO_HORAS = new HashSet<TBL_REGISTRO_HORAS>();
             TBL_REGISTRO_ICNDENCIA = new HashSet<TBL_REGISTRO_ICNDENCIA>();
             TBL_USUARIO = new HashSet<TBL_USUARIO>();
+
         }
 
         [Key]
@@ -69,7 +71,7 @@ namespace Proyecto_Tesis.Models
         public int IN_CODIGO_AREA { get; set; }
 
         public virtual TBL_AREA_PUESTO TBL_AREA_PUESTO { get; set; }
-
+        
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBL_REGISTRO_HORAS> TBL_REGISTRO_HORAS { get; set; }
 
@@ -78,5 +80,9 @@ namespace Proyecto_Tesis.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBL_USUARIO> TBL_USUARIO { get; set; }
+         
+
+
+
     }
 }

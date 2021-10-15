@@ -33,5 +33,9 @@ namespace Proyecto_Tesis.Models
         public virtual ICollection<TBL_AREA_PUESTO> TBL_AREA_PUESTO { get; set; }
 
         public virtual TBL_COMPANIA TBL_COMPANIA { get; set; }
+
+        //--AGREADO
+        
+        //------
     }
 }
