@@ -43,16 +43,20 @@ namespace Proyecto_Tesis.Controllers
         // GET: Empleado/Details/5
         public ActionResult Details(int? id)
         {
+
+            EmpleadoViewModel obj2 = new EmpleadoViewModel();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TBL_EMPLEADO tBL_EMPLEADO = db.TBL_EMPLEADO.Find(id);
-            if (tBL_EMPLEADO == null)
+            //TBL_EMPLEADO tBL_EMPLEADO = db.TBL_EMPLEADO.Find(id);
+            obj2.Empleado = db.TBL_EMPLEADO.Include(m => m.TBL_AREA_PUESTO).Where(xx => xx.IN_CODIGO_EMPLEADO == id).ToList();
+           
+            if (obj2 == null)
             {
                 return HttpNotFound();
             }
-            return View(tBL_EMPLEADO);
+            return View(obj2);
         }
 
 

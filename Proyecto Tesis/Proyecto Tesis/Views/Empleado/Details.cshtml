@@ -1,5 +1,6 @@
-﻿@model Proyecto_Tesis.Models.TBL_EMPLEADO
+﻿@*@model Proyecto_Tesis.Models.TBL_EMPLEADO*@
 
+@model Proyecto_Tesis.ViewModel.EmpleadoViewModel
 @{
     ViewBag.Title = "Details";
 }
@@ -18,16 +19,20 @@
 }*@
 
 
-<div>
+@*<div>
     <h4>TBL_EMPLEADO</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.IN_CODIGO_AREA)
+            @Html.DisplayNameFor(model => model.Empleado.Find(xxx=>xxx.IN_CODIGO_EMPLEADO))
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.TBL_AREA_PUESTO.IN_CODIGO_PUESTO)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empleado.IN_CODIGO_PUESTO)
         </dd>
 
         <dt>
@@ -127,8 +132,107 @@
         </dd>
 
     </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IN_CODIGO_EMPLEADO }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>*@
+
+<table class="table table-bordered table-striped">
+    <tr>
+        @*<th>
+                CODIGO EMPLEADO
+            </th>*@
+        <th>
+            APELLIDO PATERNO
+        </th>
+        <th>
+            APELLIDO MATERNO
+        </th>
+        <th>
+            NOMBRES
+        </th>
+        @*<th>
+                CODIGO AREA
+            </th>*@
+        <th>
+            AREA
+        </th>
+        @*<th>
+                CODIGO PUESTO
+            </th>*@
+        <th>
+            PUESTO
+        </th>
+        <th>
+            GÉNERO
+        </th>
+        <th>
+            FECHA NACIMIENTO
+        </th>
+        <th>
+            NACIONALIDAD
+        </th>
+    </tr>
+
+
+
+    @foreach (var item in Model.Empleado)
+    {
+        <tr>
+            @*<td>
+                    @item.IN_CODIGO_EMPLEADO
+                </td>*@
+            <td>
+                @item.VC_APELLIDO_PATERNO
+            </td>
+            <td>
+                @item.VC_APELLIDO_MATERNO
+            </td>
+            <td>
+                @item.VC_NOMBRES
+            </td>
+            
+            <td>
+                @item.TBL_AREA_PUESTO.TBL_AREA.VC_NOMBRE_AREA
+            </td>
+            
+            <td>
+                @item.TBL_AREA_PUESTO.TBL_PUESTO.VC_NOMBRE_PUESTO
+            </td>
+            <td>
+                @if (item.CH_SEXO.Equals("1"))
+                {
+                    <a>Masculino</a>
+                }
+                else
+                {
+                    <a>Femenino</a>
+                }
+            </td>
+            <td>
+                @item.DT_FECHA_NACIMIENTO.ToShortDateString()
+            </td>
+            <td>
+                @item.VC_NACIONALIDAD
+            </td>
+            
+        </tr>
+    }
+
+</table>
+
+<div class="card-body">
+        <div class="row">  
+            <div class="col-sm-6">
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-default" href=@Url.Action("Index","Empleado")>ATRÁS</a>
+                    </div>               
+                </div>
+            </div>
+
+           
+        </div>
+    </div>
+     
+  
+       

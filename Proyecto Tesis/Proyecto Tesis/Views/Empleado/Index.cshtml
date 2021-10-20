@@ -8,46 +8,51 @@
 
 @*<h2>Index</h2>*@
 
-@*@*<p>
-    @Html.ActionLink("Create New", "Create")
-@*</p>*@
+
+<div class="card-header">
+    <h3>Relación de Empleados</h3>
+    <div class="card-tools">
+        <div class="input-group input-group-sm" style="width: 200px;" >
+            <input type="text" name="table_search" class="form-control float-right" placeholder="Buscar"/>
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-default">
+                    <i class="fas fa-search">
+
+                    </i>
+                </button>
+            </div>
+        </div>
+        <br>
+    </div>
+
+</div>
 
 <table class="table table-bordered table-striped">
     <tr>
         <th>
-            CODIGO EMPLEADO
+            
         </th>
         <th>
-            AP. PATERNO
+            APELLIDO PATERNO
         </th>
         <th>
-            AP. MATERNO
+            APELLIDO MATERNO
         </th>
         <th>
             NOMBRES
-        </th>
-        <th>           
-            CODIGO AREA
-        </th>  
-        <th>     
-            NOMBRE AREA
-        </th>     
-        <th>
-            CODIGO PUESTO
-        </th> 
-        <th>
-            NOMBRE PUESTO
-        </th> 
+        </th>   
+        
         <th>Acción</th>
     </tr>
    
   
-
+   
 @foreach (var item in Model.Empleado) {
     <tr>
         <td>
-            @item.IN_CODIGO_EMPLEADO
+           1
         </td>
+        
         <td>
             @item.VC_APELLIDO_PATERNO
         </td>
@@ -57,20 +62,6 @@
         <td>
             @item.VC_NOMBRES
         </td>
-        <td>
-            @item.IN_CODIGO_AREA
-        </td>
-        <td>
-            @item.TBL_AREA_PUESTO.TBL_AREA.VC_NOMBRE_AREA
-        </td>
-        <td>
-            @item.TBL_AREA_PUESTO.IN_CODIGO_PUESTO
-        </td>
-        <td>
-            @item.TBL_AREA_PUESTO.TBL_PUESTO.VC_NOMBRE_PUESTO
-        </td>
-      
-      
         
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IN_CODIGO_EMPLEADO }) |
